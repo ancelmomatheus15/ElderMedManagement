@@ -40,14 +40,44 @@
 			<button type="button" class="collapsible">Create </button>
 			<div class="content">
 				<ul>
-					<li> [POST] /api/data/users/create -> Registra um novo usuario</li>	
+					<li> [POST] /api/data/users/create -> Registra um novo usuario <br>
+
+						<textarea rows="9" cols="50" style="height: 300px; margin-top: 10px;" disabled="true">
+							{
+							    "name" : "",
+							    "birthDate" : "",
+							    "city" : "",
+							    "country" : "",
+							    "gender" : "",
+							    "phone" : "",
+							    "mail" : ""
+							} 
+						</textarea>
+
+					</li>	
+
 				</ul>
 			</div>
 
 			<button type="button" class="collapsible">Update </button>
 			<div class="content">
 				<ul>
-					<li>[PUT] /api/data/users/update -> Atualizar um usuario</li>
+					<li>[PUT] /api/data/users/update -> Atualizar um usuario <br>
+
+							<textarea rows="9" cols="50" style="height: 320px; margin-top: 10px;" disabled="true">
+							{
+							    "usrId" : "",
+							    "name" : "",
+							    "birthDate" : "",
+							    "city" : "",
+							    "country" : "",
+							    "gender" : "",
+							    "phone" : "",
+							    "mail" : ""
+							} 
+						</textarea>
+
+					</li>	
 				</ul>
 			</div>
 
@@ -62,7 +92,15 @@
 			<button type="button" class="collapsible">Delete </button>
 			<div class="content">
 				<ul>
-					<li> [DELETE] /api/data/user/delete/	-> Exclui um Usuario</li>
+					<li> [DELETE] /api/data/user/delete/	-> Exclui um Usuario <br>
+
+						<textarea rows="9" cols="50" style="height: 120px; margin-top: 10px;" disabled="true">
+							{
+							    "id" : "id"
+							}
+						</textarea>
+
+					</li>	
 				</ul>
 			</div>
 
@@ -74,14 +112,37 @@
 			<button type="button" class="collapsible">Create </button>
 			<div class="content">
 				<ul>
-					<li>[POST] /api/data/medication/create -> Registra um novo medicamento</li>
+					<li>[POST] /api/data/medication/create -> Registra um novo medicamento<br>
+
+						<textarea rows="9" cols="50" style="height: 300px; margin-top: 10px;" disabled="true">
+							{
+							    "name" : "",
+							    "dosage" : "",
+							    "frequency" : "",
+							    "description" : ""
+							}  
+						</textarea>
+
+					</li>	
 				</ul>
 			</div>
 
 			<button type="button" class="collapsible">Update </button>
 			<div class="content">
 				<ul>
-					<li>[PUT] /api/data/medication/update -> Atualizar um medicamento</li>
+					<li>[PUT] /api/data/medication/update -> Atualizar um medicamento<br>
+
+							<textarea rows="9" cols="50" style="height: 320px; margin-top: 10px;" disabled="true">
+							{
+							    "medicationId" : "",
+							    "name" : "",
+							    "dosage" : "",
+							    "frequency" : "",
+							    "description" : ""
+							}
+						</textarea>
+
+					</li>	
 				</ul>
 			</div>
 
@@ -97,7 +158,15 @@
 			<button type="button" class="collapsible">Delete </button>
 			<div class="content">
 				<ul>
-					<li> [DELETE] /api/data/medication/delete/	-> Exclui um Medicamento</li>
+					<li> [DELETE] /api/data/medication/delete/	-> Exclui um Medicamento <br>
+
+						<textarea rows="9" cols="50" style="height: 120px; margin-top: 10px;" disabled="true">
+							{
+							    "id" : "id"
+							}
+						</textarea>
+
+					</li>
 				</ul>
 			</div>
 
@@ -109,14 +178,39 @@
 			<button type="button" class="collapsible">Create </button>
 			<div class="content">
 				<ul>
-					<li>[POST] /api/data/medic/create -> Registra um novo medico</li>
+					<li>[POST] /api/data/medic/create -> Registra um novo medico<br>
+
+						<textarea rows="9" cols="50" style="height: 300px; margin-top: 10px;" disabled="true">
+							{
+							    "name" : "",
+							    "specialty" : "",
+							    "addressStreet" : "",
+							    "addressNumber" : "",
+							    "addressZip" : ""
+							} 
+						</textarea>
+
+					</li>	
 				</ul>
 			</div>
 
 			<button type="button" class="collapsible">Update </button>
 			<div class="content">
 				<ul>
-					<li> [PUT] /api/data/medic/update -> Atualiza um medico</li>
+					<li> [PUT] /api/data/medic/update -> Atualiza um medico<br>
+
+							<textarea rows="9" cols="50" style="height: 320px; margin-top: 10px;" disabled="true">
+							{
+							    "medicId" : "",
+							    "name" : "",
+							    "specialty" : "",
+							    "addressStreet" : "",
+							    "addressNumber" : "",
+							    "addressZip" : ""
+							} 
+						</textarea>
+
+					</li>	
 				</ul>
 			</div>
 
@@ -132,7 +226,15 @@
 			<button type="button" class="collapsible">Delete </button>
 			<div class="content">
 				<ul>
-					<li> [DELETE] /api/data/medic/delete/	-> Exclui um Médico</li>
+					<li> [DELETE] /api/data/medic/delete/	-> Exclui um Médico <br>
+
+						<textarea rows="9" cols="50" style="height: 120px; margin-top: 10px;" disabled="true">
+							{
+							    "id" : "id"
+							}
+						</textarea>
+
+					</li>
 				</ul>
 			</div>
 
@@ -144,14 +246,37 @@
 			<button type="button" class="collapsible">Create </button>
 			<div class="content">
 				<ul>
-					<li>[POST] /api/data/hospital/create -> Registra um novo hospital</li>
+					<li>[POST] /api/data/hospital/create -> Registra um novo hospital<br>
+
+						<textarea rows="9" cols="50" style="height: 300px; margin-top: 10px;" disabled="true">
+							{
+							    "name" : "",
+							    "addressStreet" : "",
+							    "addressNumber" : "",
+							    "addressZip" : ""
+							} 
+						</textarea>
+
+					</li>	
 				</ul>
 			</div>
 
 			<button type="button" class="collapsible">Update </button>
 			<div class="content">
 				<ul>
-					<li> [PUT] /api/data/hospital/update -> Atualiza um hospital</li>
+					<li> [PUT] /api/data/hospital/update -> Atualiza um hospital<br>
+
+							<textarea rows="9" cols="50" style="height: 320px; margin-top: 10px;" disabled="true">
+							{
+							    "hospitalId": "",
+							    "name" : "",
+							    "addressStreet" : "",
+							    "addressNumber" : "",
+							    "addressZip" : ""
+							}  
+						</textarea>
+
+					</li>	
 				</ul>
 			</div>
 
@@ -167,7 +292,15 @@
 			<button type="button" class="collapsible">Delete </button>
 			<div class="content">
 				<ul>
-					<li> [DELETE] /api/data/hospital/delete/ -> Exclui um hospital</li>
+					<li> [DELETE] /api/data/hospital/delete/ -> Exclui um hospital <br>
+
+						<textarea rows="9" cols="50" style="height: 120px; margin-top: 10px;" disabled="true">
+							{
+							    "id" : "id"
+							}
+						</textarea>
+
+					</li>
 				</ul>
 			</div>
 
@@ -179,14 +312,43 @@
 			<button type="button" class="collapsible">Create </button>
 			<div class="content">
 				<ul>
-					<li>[POST] /api/data/treatment/create -> Registra um novo tratamento</li> 
+					<li>[POST] /api/data/treatment/create -> Registra um novo tratamento<br>
+
+						<textarea rows="9" cols="50" style="height: 300px; margin-top: 10px;" disabled="true">
+							{
+							    "user" : "",
+							    "medication" : "",
+							    "data_inicio" : "",
+							    "data_fim" : "",
+							    "last_occurrence" : "",
+							    "medic" : "",
+							    "descricao" : ""
+							} 
+						</textarea>
+
+					</li>	
 				</ul>
 			</div>
 
 			<button type="button" class="collapsible">Update </button>
 			<div class="content">
 				<ul>
-					<li> [PUT] /api/data/treatment/update -> Atualiza um tratamento</li>
+					<li> [PUT] /api/data/treatment/update -> Atualiza um tratamento<br>
+
+							<textarea rows="9" cols="50" style="height: 320px; margin-top: 10px;" disabled="true">
+							{
+							    "treatmentId" : "",
+							    "user" : "",
+							    "medication" : "",
+							    "data_inicio" : "",
+							    "data_fim" : "",
+							    "last_occurrence" : "",
+							    "medic" : "",
+							    "descricao" : ""
+							} 
+						</textarea>
+
+					</li>	
 				</ul>
 			</div>
 
@@ -200,7 +362,15 @@
 			<button type="button" class="collapsible">Delete </button>
 			<div class="content">
 				<ul>
-					<li> [DELETE] /api/data/treatment/delete/ -> Exclui um tratamento</li>
+					<li> [DELETE] /api/data/treatment/delete/ -> Exclui um tratamento <br>
+
+						<textarea rows="9" cols="50" style="height: 120px; margin-top: 10px;" disabled="true">
+							{
+							    "id" : "id"
+							}
+						</textarea>
+
+					</li>
 				</ul>
 			</div>
 
@@ -212,14 +382,39 @@
 			<button type="button" class="collapsible">Create </button>
 			<div class="content">
 				<ul>
-					<li>[POST] /api/data/appointment/create -> Registra um novo compromisso</li>
+					<li>[POST] /api/data/appointment/create -> Registra um novo compromisso<br>
+
+						<textarea rows="9" cols="50" style="height: 300px; margin-top: 10px;" disabled="true">
+							{
+							    "hora" : "",
+							    "data" : "",
+							    "hospital" : "",
+							    "medic" : "",
+							    "descricao" : ""
+							} 
+						</textarea>
+
+					</li>	
 				</ul>
 			</div>
 
 			<button type="button" class="collapsible">Update </button>
 			<div class="content">
 				<ul>
-					<li> [PUT] /api/data/appointment/update -> Atualiza uma consulta</li>
+					<li> [PUT] /api/data/appointment/update -> Atualiza uma consulta<br>
+
+							<textarea rows="9" cols="50" style="height: 320px; margin-top: 10px;" disabled="true">
+							{
+							    "appointmentId" : "",
+							    "hora" : "",
+							    "data" : "",
+							    "hospital" : "",
+							    "medic" : "",
+							    "descricao" : ""
+							} 
+						</textarea>
+
+					</li>	
 				</ul>
 			</div>
 
@@ -233,7 +428,15 @@
 			<button type="button" class="collapsible">Delete </button>
 			<div class="content">
 				<ul>
-					<li> [DELETE] /api/data/appointment/delete/ -> Exclui uma consulta</li>
+					<li> [DELETE] /api/data/appointment/delete/ -> Exclui uma consulta <br>
+
+						<textarea rows="9" cols="50" style="height: 120px; margin-top: 10px;" disabled="true">
+							{
+							    "id" : "id"
+							}
+						</textarea>
+
+					</li>
 				</ul>
 			</div>
 
