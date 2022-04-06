@@ -1,25 +1,52 @@
 import os
 
-def awake():
+def zenboAwake():
     
     filePath = 'C:\ZenboApplications\zenboAwake.py'    
     runFile(filePath)
     
     return 'OK'
 
-def listAllMedication():
+
+def zenboListAppointments(userId):
+    
+    filePath = 'C:\ZenboApplications\zenboInformacaoTratamento.py'    
+    runFileParam(filePath, [str(userId)])
+    
+    return 'OK' 
+
+
+def zenboListWeekAppointments(userId):
     
     filePath = 'C:\ZenboApplications\zenboListAllMedication.py'    
-    runFile(filePath)
+    runFileParam(filePath, [str(userId)])
     
     return 'OK'
 
-def incomingAppointment():
+
+def zenboListTreatments(userId):
     
-    filePath = 'C:\ZenboApplications\zenboIncomingAppointment.py'   
-    runFileParam(filePath, '1')
+    filePath = 'C:\ZenboApplications\zenboListAllMedication.py'    
+    runFileParam(filePath, [str(userId)])
     
-    return 'OK' 
+    return 'OK'
+
+
+def zenboIngestMed(userId, treatmentId):
+    
+    filePath = 'C:\ZenboApplications\zenboListAllMedication.py'    
+    runFileParam(filePath, [str(userId), str(treatmentId)])
+    
+    return 'OK'
+
+
+def zenboNextMedication(userId):
+    
+    filePath = 'C:\ZenboApplications\zenboListAllMedication.py'    
+    runFileParam(filePath, [str(userId)])
+    
+    return 'OK'
+
 
 def runFile(filePath):
     
@@ -27,7 +54,9 @@ def runFile(filePath):
     
 def runFileParam(filePath, param):
     
-    os.system('python '+ filePath + ' ' + param)
+    paramStr = ' '.join(param)
+    
+    os.system('python '+ filePath + ' ' + paramStr)
     
     
 '''

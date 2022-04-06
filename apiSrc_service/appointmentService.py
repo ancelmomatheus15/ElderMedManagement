@@ -31,6 +31,66 @@ def getAppointment(userId):
         print(jsonAppointmentList)
         
         return (jsonAppointmentList)
+    
+def getAppointmentWithDate(userId, date):
+    
+    jsonMedicationList = "["
+    
+    appointmentList = appointmentRepository.getAppointmentWithDate(userId, date)
+    
+    print(appointmentList)
+    
+    if appointmentList == []:
+        
+        return '[]'
+    
+    else:
+    
+        for i in appointmentList:
+            
+            
+            medicationJson = json.dumps(i.__dict__)
+            
+            jsonMedicationList = jsonMedicationList + medicationJson + ", "
+            
+        
+        auxConvert = list(jsonMedicationList)
+        auxConvert[len(auxConvert) - 2] = ']'
+        jsonAppointmentList = "".join(auxConvert)
+        
+        print(jsonAppointmentList)
+        
+        return (jsonAppointmentList)
+    
+def getAppointmentWeek(userId):
+    
+    jsonMedicationList = "["
+    
+    appointmentList = appointmentRepository.getAppointmentWeek(userId)
+    
+    print(appointmentList)
+    
+    if appointmentList == []:
+        
+        return '[]'
+    
+    else:
+    
+        for i in appointmentList:
+            
+            
+            medicationJson = json.dumps(i.__dict__)
+            
+            jsonMedicationList = jsonMedicationList + medicationJson + ", "
+            
+        
+        auxConvert = list(jsonMedicationList)
+        auxConvert[len(auxConvert) - 2] = ']'
+        jsonAppointmentList = "".join(auxConvert)
+        
+        print(jsonAppointmentList)
+        
+        return (jsonAppointmentList)
 
 def getTreatment(id):
     
@@ -75,9 +135,9 @@ def createAppointment(user, hora, data, hospital, medic, descricao):
     
     return (appointmentJson)
 
-def createTreatment(user, medication, data_inicio, data_fim, last_occurrence, medic, descricao):
+def createTreatment(user, medication, data_inicio, data_fim, last_occurrence, medic, descricao, monitorado, atendido):
     
-    insertResult = appointmentRepository.createTreatment(user, medication, data_inicio, data_fim, last_occurrence, medic, descricao)
+    insertResult = appointmentRepository.createTreatment(user, medication, data_inicio, data_fim, last_occurrence, medic, descricao, monitorado, atendido)
      
     treatmentJson = json.dumps(insertResult)
     
@@ -141,7 +201,7 @@ def updateAppointment(appointmentId, user, hora, data, hospital, medic, descrica
     return(appointmentRepository.updateAppointment(updtAppointment)) 
 
     
-def updateTreatment(treatmentId, user, medication, data_inicio, data_fim, last_occurrence, medic, descricao):
+def updateTreatment(treatmentId, user, medication, data_inicio, data_fim, last_occurrence, medic, descricao, monitorado, atendido):
 
     updtTreatment = treatmentEntity.Treatment()
     
@@ -194,6 +254,18 @@ def updateTreatment(treatmentId, user, medication, data_inicio, data_fim, last_o
         updtTreatment.descricao = descricao
     else:
         updtTreatment.descricao = getTreatmentAux["descricao"]
+        
+    #atualizar monitorado
+    if monitorado != "":
+        updtTreatment.monitorado = monitorado
+    else:
+        updtTreatment.monitorado = getTreatmentAux["monitorado"]
+        
+    #atualizar atendido
+    if atendido != "":
+        updtTreatment.atendido = atendido
+    else:
+        updtTreatment.atendido = getTreatmentAux["atendido"]  
         
     #jogar treatment no banco
     return(appointmentRepository.updateTreatment(updtTreatment))

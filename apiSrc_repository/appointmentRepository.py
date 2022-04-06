@@ -1,7 +1,7 @@
 import mysql.connector
 from apiSrc_application import persistanceProperties
 from apiSrc_entity import appointmentEntity, treatmentEntity
-from datetime import datetime
+import datetime 
 from apiSrc_entity.medicEntity import Medic
 
 def getAppointmentsById(id):
@@ -31,6 +31,66 @@ def getAppointmentsById(id):
         
         return("Erro ao conectar com o banco de dados") 
     
+def getAppointmentWithDate(userId, data):
+    
+    try:
+        
+        paramHost = persistanceProperties.getProperty("host")
+        paramUser = persistanceProperties.getProperty("user")
+        paramPassword = persistanceProperties.getProperty("password")
+        paramDatabase = persistanceProperties.getProperty("database")
+        
+        dbConn = mysql.connector.connect(host=paramHost, user=paramUser, password=paramPassword, database=paramDatabase)
+    
+        dbCursor = dbConn.cursor()
+    
+        query = "SELECT * FROM appointment WHERE user = "+ str(userId) +" and data = '"+ data +"';";
+        dbCursor.execute(query)
+    
+        dbQueryResult = dbCursor.fetchall()
+        
+        dbCursor.close()
+        dbConn.close()
+        
+        return(entityConverter(dbQueryResult))
+    
+    except:
+        
+        return("Erro ao conectar com o banco de dados") 
+    
+    
+def getAppointmentWeek(userId):
+    
+    try:
+        
+        paramHost = persistanceProperties.getProperty("host")
+        paramUser = persistanceProperties.getProperty("user")
+        paramPassword = persistanceProperties.getProperty("password")
+        paramDatabase = persistanceProperties.getProperty("database")
+        
+        dbConn = mysql.connector.connect(host=paramHost, user=paramUser, password=paramPassword, database=paramDatabase)
+    
+        dbCursor = dbConn.cursor()
+        
+        dataInicio = datetime.date.today()
+        dataFim = dataInicio + datetime.timedelta(days=7)
+        
+        query = "SELECT * FROM appointment WHERE user = "+ str(userId) +" AND data >= '"+ str(dataInicio) +"' AND data <= '"+ str(dataFim) +"';"
+    
+        dbCursor.execute(query)
+    
+        dbQueryResult = dbCursor.fetchall()
+        
+        dbCursor.close()
+        dbConn.close()
+        
+        return(entityConverter(dbQueryResult))
+    
+    except:
+        
+        return("Erro ao conectar com o banco de dados") 
+    
+        
 def getTreatmentById(id):
     
     try:
@@ -44,7 +104,7 @@ def getTreatmentById(id):
     
         dbCursor = dbConn.cursor()
     
-        query = "SELECT * FROM treatment WHERE id = "+ str(id) +";";
+        query = "SELECT * FROM treatment WHERE user = "+ str(id) +";";
         dbCursor.execute(query)
     
         dbQueryResult = dbCursor.fetchall()
@@ -95,7 +155,7 @@ def createAppointment(user, hora, data, hospital, medic, descricao):
         return("Erro ao conectar com o banco de dados")
     
     
-def createTreatment(user, medication, data_inicio, data_fim, last_occurrence, medic, descricao):
+def createTreatment(user, medication, data_inicio, data_fim, last_occurrence, medic, descricao, monitorado, atendido ):
 
     try:
         
@@ -108,7 +168,7 @@ def createTreatment(user, medication, data_inicio, data_fim, last_occurrence, me
     
         dbCursor = dbConn.cursor()
     
-        query = "INSERT INTO treatment (user, medication, data_inicio, data_fim, last_occurrence, medic, descricao) VALUES('"+ user +"', '"+ medication +"', '"+ data_inicio +"', '"+ data_fim +"', '"+ last_occurrence +"', '"+ medic +"', '"+ descricao +"');"
+        query = "INSERT INTO treatment (user, medication, data_inicio, data_fim, last_occurrence, medic, descricao, monitorado, atendido ) VALUES('"+ user +"', '"+ medication +"', '"+ data_inicio +"', '"+ data_fim +"', '"+ last_occurrence +"', '"+ medic +"', '"+ descricao +"', '"+ monitorado +"', '"+ atendido +"');"
         dbCursor.execute(query)
     
         dbConn.commit()
@@ -169,7 +229,7 @@ def updateTreatment(treatment):
     
         dbCursor = dbConn.cursor()
     
-        query = "UPDATE treatment SET user = '"+ str(treatment.user) +"', medication = '"+ str(treatment.medication) +"', data_inicio = '"+ str(treatment.data_inicio) +"', data_fim = '"+ str(treatment.data_fim) +"', last_occurrence = '"+ str(treatment.last_occurrence) +"', medic = '"+ str(treatment.medic) +"', descricao = '"+ treatment.descricao +"' WHERE id = "+ str(treatment.id) +";";
+        query = "UPDATE treatment SET user = '"+ str(treatment.user) +"', medication = '"+ str(treatment.medication) +"', data_inicio = '"+ str(treatment.data_inicio) +"', data_fim = '"+ str(treatment.data_fim) +"', last_occurrence = '"+ str(treatment.last_occurrence) +"', medic = '"+ str(treatment.medic) +"', descricao = '"+ treatment.descricao +"' , monitorado = '"+ treatment.monitorado +"' , atendido = '"+ treatment.atendido +"' WHERE id = "+ str(treatment.id) +";";
         dbCursor.execute(query)
     
         dbConn.commit()
@@ -271,6 +331,9 @@ def entityConverterTreatment(queryResults):
         newTreatment.last_occurrence = item[5]
         newTreatment.medic = item[6]
         newTreatment.descricao = item[7]
+        newTreatment.monitorado = item[8]
+        newTreatment.atendido = item[9]
+        
         
         returnArray.append(newTreatment)
         

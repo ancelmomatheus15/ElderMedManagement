@@ -322,7 +322,9 @@
 							    "data_fim" : "",
 							    "last_occurrence" : "",
 							    "medic" : "",
-							    "descricao" : ""
+							    "descricao" : "",
+							    "monitorado" : "",
+							    "atendido" : ""
 							} 
 						</textarea>
 
@@ -344,7 +346,9 @@
 							    "data_fim" : "",
 							    "last_occurrence" : "",
 							    "medic" : "",
-							    "descricao" : ""
+							    "descricao" : "",
+							    "monitorado" : "",
+							    "atendido" : ""
 							} 
 						</textarea>
 
@@ -422,6 +426,8 @@
 			<div class="content">
 				<ul>
 					<li>[GET]  api/data/appointment/id?id=userId -> buscar compromisso pelo id do usuario</li>
+					<li>[GET]  api/data/appointment/idDate?id=userId&date=date -> buscar compromisso pelo id do usuario e pela data (AAAA-MM-DD)</li>
+					<li>[GET]  api/data/appointment/week?id=userId -> buscar compromisso do usuario em um intervalo de 7 dias</li>
 				</ul>
 			</div>
 
@@ -442,6 +448,25 @@
 
 	</div>
 
+<!-- ============================================================================================================================ -->
+
+	<div>
+		<h3>Funcoes Zenbo</h3>
+
+
+			<button type="button" class="collapsible">Read </button>
+			<div class="content">
+				<ul>
+					<li>[GET]  api/data/zenbo/awake -> Zenbo indica que está ativo</li>
+					<li>[GET]  api/data/zenbo/listAppointments/id?id=userId -> Zenbo lista os compromissos do dia</li>
+					<li>[GET]  api/data/zenbo/listWeekAppointments/id?id=userId -> Zenbo lista os compromissos da semana</li>
+					<li>[GET]  api/data/zenbo/listTreatments/id?id=userId -> Zenbo lista os tratamentos e os respectivos detalhes para um usuario</li>
+					<li>[GET]  api/data/zenbo/ingestMed?userId=userId&treatmentId=treatmentId -> Zenbo verifica se o usuario tomou os remedios de um tratamento</li>
+					<li>[GET]  api/data/zenbo/nextMedication/id?id=userId -> Zenbo lista os medicamentos de um usuario</li>
+				</ul>
+			</div>
+
+	</div>
 
 <!-- =========================================================SCRIPT============================================================= -->
 
