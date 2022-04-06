@@ -469,7 +469,7 @@ def deleteMedicById():
     
 #Appointment Functions ==================================================================
 
-#busca agendamentos do mes com base no id do usuario
+#busca agendamentos do usuario com base no id do usuario
 #param -> userId
 #127.0.0.1:5000/api/data/appointment/id?id=userId
 @app.route('/api/data/appointment/id', methods=['GET'])
@@ -483,6 +483,39 @@ def getAppointmentByUserId():
         return "Error: No id field provided. Please specify an id."
     
     return appointmentController.getAppointment(userId) 
+
+
+#busca agendamentos do usuario com base no id do usuario e na data
+#param -> userId, date (AAAA-MM-DD)
+#127.0.0.1:5000/api/data/appointment/idDate?id=userId&date=date
+@app.route('/api/data/appointment/idDate', methods=['GET'])
+def getAppointmentByUserIdandDate():
+    
+    userId = ""
+    date = ""
+    
+    if 'id' and 'date' in request.args:
+        userId = request.args['id']
+        date = request.args['date']
+    else:
+        return "Error: No id field provided. Please specify an id."
+    
+    return appointmentController.getAppointmentWithDate(userId, date) 
+
+#busca agendamentos do usuario com base no id do usuario e na data
+#param -> userId, date (AAAA-MM-DD)
+#127.0.0.1:5000/api/data/appointment/week?id=userId
+@app.route('/api/data/appointment/week', methods=['GET'])
+def getAppointmentByUserIdandWeek():
+    
+    userId = ""
+    
+    if 'id' in request.args:
+        userId = request.args['id']
+    else:
+        return "Error: No id field provided. Please specify an id."
+    
+    return appointmentController.getAppointmentWeek(userId) 
 
 
 #busca tratamentos com base no id do usuario
@@ -539,14 +572,16 @@ def createAppointment():
 #    "data_fim" : "",
 #    "last_occurrence" : "",
 #    "medic" : "",
-#    "descricao" : ""
+#    "descricao" : "",
+#    "monitorado" : "",
+#    "atendido" : ""
 #} 
 @app.route('/api/data/treatment/create', methods=['POST'])
 def createTreatment():
     
     request_data = request.get_json()
     
-    if 'user' and 'medication' and  'data_inicio' and 'data_fim' and 'last_occurrence' and 'medic' and 'descricao' in request_data:
+    if 'user' and 'medication' and  'data_inicio' and 'data_fim' and 'last_occurrence' and 'medic' and 'descricao' and 'monitorado' and 'atendido' in request_data:
         
         user = request_data['user']
         medication = request_data['medication']
@@ -555,8 +590,10 @@ def createTreatment():
         last_occurrence = request_data['last_occurrence']
         medic = request_data['medic']
         descricao = request_data['descricao']
+        monitorado = request_data['monitorado']
+        atendido = request_data['atendido']
         
-        return appointmentController.createTreatment(user, medication, data_inicio, data_fim, last_occurrence, medic, descricao)  
+        return appointmentController.createTreatment(user, medication, data_inicio, data_fim, last_occurrence, medic, descricao, monitorado, atendido)  
     else:  
         return("ERRO 500: JSON invalido")
 
@@ -602,14 +639,16 @@ def updateAppointment():
 #    "data_fim" : "",
 #    "last_occurrence" : "",
 #    "medic" : "",
-#    "descricao" : ""
+#    "descricao" : "",
+#    "monitorado" : "",
+#    "atendido" : ""
 #} 
 @app.route('/api/data/treatment/update', methods=['PUT'])
 def updateTreatment():
     
     request_data = request.get_json()
     
-    if 'treatmentId' and 'user' and 'medication' and  'data_inicio' and 'data_fim' and 'last_occurrence' and 'medic' and 'descricao' in request_data:
+    if 'treatmentId' and 'user' and 'medication' and  'data_inicio' and 'data_fim' and 'last_occurrence' and 'medic' and 'descricao' and 'monitorado' and 'atendido' in request_data:
         
         treatmentId = request_data['treatmentId']
         user = request_data['user']
@@ -619,8 +658,10 @@ def updateTreatment():
         last_occurrence = request_data['last_occurrence']
         medic = request_data['medic']
         descricao = request_data['descricao']
+        monitorado = request_data['monitorado']
+        atendido = request_data['atendido']
         
-        return appointmentController.updateTreatment(treatmentId, user, medication, data_inicio, data_fim, last_occurrence, medic, descricao)  
+        return appointmentController.updateTreatment(treatmentId, user, medication, data_inicio, data_fim, last_occurrence, medic, descricao, monitorado, atendido)  
     else: 
         return("ERRO 500: JSON invalido")    
     
@@ -670,19 +711,76 @@ def deleteAppointmentById():
 #127.0.0.1:5000/api/data/zenbo/awake
 @app.route('/api/data/zenbo/awake', methods=['GET'])
 def zenboAwake():
-    return zenboController.awake()
+    return zenboController.zenboAwake()
 
-#Zenbo busca todos os medicamentos
-#127.0.0.1:5000/api/data/zenbo/listAllMedication
-@app.route('/api/data/zenbo/listAllMedication', methods=['GET'])
-def zenboListAllMedication():
-    return zenboController.listAllMedication()
+#lista os compromissos do dia
+#127.0.0.1:5000/api/data/zenbo/listAppointments/id?id=userId
+@app.route('/api/data/zenbo/listAppointments/id', methods=['GET'])
+def zenboListAppointments():
+    userId = ""
+    
+    if 'id' in request.args:
+        userId = request.args['id']
+    else:
+        return "Error: No id field provided. Please specify an id."
+    
+    return zenboController.zenboListAppointments(userId) 
 
-#Zenbo consulta o proximo appointment
-@app.route('/api/data/zenbo/incomingAppointment', methods=['GET'])
-def zenboIncAppointment():
-    return zenboController.incomingAppointment()
+#lista os compromissos da semana
+#127.0.0.1:5000/api/data/zenbo/listWeekAppointments/id?id=userId
+@app.route('/api/data/zenbo/listWeekAppointments/id', methods=['GET'])
+def zenboListWeekAppointments():
+    userId = ""
+    
+    if 'id' in request.args:
+        userId = request.args['id']
+    else:
+        return "Error: No id field provided. Please specify an id."
+    
+    return zenboController.zenboListWeekAppointments(userId) 
 
+#lista os tratamentos do usuario
+#127.0.0.1:5000/api/data/zenbo/listTreatments/id?id=userId
+@app.route('/api/data/zenbo/listTreatments/id', methods=['GET'])
+def zenboListTreatments():
+    userId = ""
+    
+    if 'id' in request.args:
+        userId = request.args['id']
+    else:
+        return "Error: No id field provided. Please specify an id."
+    
+    return zenboController.zenboListTreatments(userId) 
+
+#verifica a ingestao de medicamentos
+#127.0.0.1:5000/api/data/zenbo/ingestMed?userId=userId&treatmentId=treatmentId
+@app.route('/api/data/zenbo/ingestMed', methods=['GET'])
+def zenboIngestMed():
+    
+    userId = ""
+    treatmentId = ""
+    
+    if 'userId' and 'treatmentId' in request.args:
+        userId = request.args['userId']
+        treatmentId = request.args['treatmentId']
+    else:
+        return "Error: No id field provided. Please specify an id."
+    
+    return zenboController.zenboListTreatments(userId, treatmentId) 
+
+
+#informa o proximo medicamento do usuario
+#127.0.0.1:5000/api/data/zenbo/nextMedication/id?id=userId
+@app.route('/api/data/zenbo/nextMedication/id', methods=['GET'])
+def zenboNextMedication():
+    userId = ""
+    
+    if 'id' in request.args:
+        userId = request.args['id']
+    else:
+        return "Error: No id field provided. Please specify an id."
+    
+    return zenboController.zenboNextMedication(userId) 
 
 
 #========================================================================================
@@ -695,6 +793,7 @@ htmlPage = htmlFile.read()
 
 #app.run(host="192.168.1.7", port=1515, debug=True)
 app.run(host="192.168.7.15", port=1515)
+
 
 
 
