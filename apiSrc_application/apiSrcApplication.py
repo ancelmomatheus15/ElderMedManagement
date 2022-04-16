@@ -766,7 +766,7 @@ def zenboIngestMed():
     else:
         return "Error: No id field provided. Please specify an id."
     
-    return zenboController.zenboListTreatments(userId, treatmentId) 
+    return zenboController.zenboIngestMed(userId, treatmentId) 
 
 
 #informa o proximo medicamento do usuario

@@ -10,7 +10,7 @@ def zenboAwake():
 
 def zenboListAppointments(userId):
     
-    filePath = 'C:\ZenboApplications\zenboInformacaoTratamento.py'    
+    filePath = 'C:\ZenboApplications\zenboCompromissosDoDia.py'    
     runFileParam(filePath, [str(userId)])
     
     return 'OK' 
@@ -18,7 +18,7 @@ def zenboListAppointments(userId):
 
 def zenboListWeekAppointments(userId):
     
-    filePath = 'C:\ZenboApplications\zenboListAllMedication.py'    
+    filePath = 'C:\ZenboApplications\zenboCompromissosSemana.py'    
     runFileParam(filePath, [str(userId)])
     
     return 'OK'
@@ -26,7 +26,7 @@ def zenboListWeekAppointments(userId):
 
 def zenboListTreatments(userId):
     
-    filePath = 'C:\ZenboApplications\zenboListAllMedication.py'    
+    filePath = 'C:\ZenboApplications\zenboInformacaoTratamento.py'    
     runFileParam(filePath, [str(userId)])
     
     return 'OK'
@@ -34,7 +34,7 @@ def zenboListTreatments(userId):
 
 def zenboIngestMed(userId, treatmentId):
     
-    filePath = 'C:\ZenboApplications\zenboListAllMedication.py'    
+    filePath = 'C:\ZenboApplications\zenboIngestaoDeMedicamentos.py'    
     runFileParam(filePath, [str(userId), str(treatmentId)])
     
     return 'OK'
@@ -42,7 +42,7 @@ def zenboIngestMed(userId, treatmentId):
 
 def zenboNextMedication(userId):
     
-    filePath = 'C:\ZenboApplications\zenboListAllMedication.py'    
+    filePath = 'C:\ZenboApplications\zenboProximoMedicamento.py'    
     runFileParam(filePath, [str(userId)])
     
     return 'OK'
